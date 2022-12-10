@@ -1,0 +1,23 @@
+name: Auto
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 */12 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: commit
+        run: |
+          git config user.name "i-am-ade"
+          git config user.email "hi@iamade.me"
+          date > 0
+          git add .
+          git commit -m $(date)
+          git push
